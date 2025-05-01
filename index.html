@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Выпечка и декор на заказ</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff8f3;
+      color: #333;
+    }
+
+    header {
+      text-align: center;
+      padding: 2em 1em;
+      background: #ffebd9;
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      margin-bottom: 0.3em;
+    }
+
+    header p {
+      font-size: 1.2em;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .carousel {
+      position: relative;
+      max-width: 800px;
+      margin: 2em auto;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      background: #ffffff;
+    }
+
+    .carousel.horizontal {
+      aspect-ratio: 16 / 9;
+    }
+
+    .carousel.vertical {
+      aspect-ratio: 3 / 4;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
+      height: 100%;
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+    }
+
+    .carousel-slide img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .carousel-slide img:hover {
+      transform: scale(1.03);
+    }
+
+    .services {
+      text-align: center;
+      padding: 3em 1em;
+      background: #fff3ea;
+    }
+
+    .services h2 {
+      font-size: 2em;
+      margin-bottom: 1em;
+    }
+
+    .service-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2em;
+    }
+
+    .service-item {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 1.5em;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+      max-width: 250px;
+    }
+
+    .service-item h3 {
+      margin-bottom: 0.5em;
+      color: #cc6600;
+    }
+
+    .contact {
+      padding: 2em 1em;
+      background: #ffe0cc;
+      text-align: center;
+    }
+
+    .contact h2 {
+      margin-bottom: 1em;
+    }
+
+    .contact p {
+      font-size: 1.1em;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.8em;
+      }
+
+      .carousel {
+        border-radius: 0;
+      }
+
+      .service-list {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Вкусные моменты на заказ</h1>
+    <p>Готовлю с любовью: торты, еда и декор для любого праздника</p>
+  </header>
+
+  <!-- Горизонтальные фото -->
+  <div class="carousel horizontal">
+    <div class="carousel-track" id="carouselHorizontal">
+      <div class="carousel-slide"><img src="1.jpg" alt="Фото 1"></div>
+      <div class="carousel-slide"><img src="4.jpg" alt="Фото 4"></div>
+      <div class="carousel-slide"><img src="11.jpg" alt="Фото 11"></div>
+    </div>
+  </div>
+
+  <section class="services">
+    <h2>Услуги</h2>
+    <div class="service-list">
+      <div class="service-item">
+        <h3>Выпечка</h3>
+        <p>Торты, капкейки, печенье — по индивидуальному заказу</p>
+      </div>
+      <div class="service-item">
+        <h3>Готовка</h3>
+        <p>Домашняя еда для мероприятий и на каждый день</p>
+      </div>
+      <div class="service-item">
+        <h3>Декорации</h3>
+        <p>Украшения для столов, фотозон и упаковка</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Вертикальные фото -->
+  <div class="carousel vertical">
+    <div class="carousel-track" id="carouselVertical">
+      <div class="carousel-slide"><img src="2.jpg" alt="Фото 2"></div>
+      <div class="carousel-slide"><img src="3.jpg" alt="Фото 3"></div>
+      <div class="carousel-slide"><img src="5.jpg" alt="Фото 5"></div>
+      <div class="carousel-slide"><img src="6.jpg" alt="Фото 6"></div>
+      <div class="carousel-slide"><img src="7.jpg" alt="Фото 7"></div>
+      <div class="carousel-slide"><img src="8.jpg" alt="Фото 8"></div>
+      <div class="carousel-slide"><img src="9.jpg" alt="Фото 9"></div>
+      <div class="carousel-slide"><img src="10.jpg" alt="Фото 10"></div>
+      <div class="carousel-slide"><img src="12.jpg" alt="Фото 12"></div>
+    </div>
+  </div>
+
+  <section class="contact">
+    <h2>Связаться со мной</h2>
+    <p>WhatsApp: <strong>+7 777 123 45 67</strong><br>Email: <strong>tvoi@email.kz</strong><br>Instagram: <strong>@vkusno_na_zakaz</strong></p>
+  </section>
+
+  <script>
+    function initCarousel(trackId, interval = 3000) {
+      const track = document.getElementById(trackId);
+      let index = 0;
+      const slides = track.children;
+      const totalSlides = slides.length;
+
+      setInterval(() => {
+        index = (index + 1) % totalSlides;
+        track.style.transform = `translateX(${-index * 100}%)`;
+      }, interval);
+    }
+
+    initCarousel('carouselHorizontal', 3500);
+    initCarousel('carouselVertical', 4000);
+  </script>
+
+</body>
+</html>
